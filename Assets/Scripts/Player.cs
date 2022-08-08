@@ -17,25 +17,27 @@ public class Player : NetworkBehaviour
     private float rotationSpeed = 10;
     [SerializeField]
     private CollisionChecker collisionChecker;
-    private float mouseY;
     private Vector3 movement;
     private Coroutine coroutine;
     [SerializeField]
     public Text scoreText;
     [SerializeField]
     private GameObject cameraPosition;
+    private Camera playerCamera;
 
     private void Start()
     {
         if (isLocalPlayer)
         {
-            Transform cameraTransform = Camera.main.gameObject.transform;
+            playerCamera = Camera.main;
+            Transform cameraTransform = playerCamera.gameObject.transform;
             cameraTransform.parent = cameraPosition.transform;  
             cameraTransform.position = cameraPosition.transform.position;  
             cameraTransform.rotation = cameraPosition.transform.rotation;
         }
         ScoreControllerNetwork.GetInstance().AddPlayerScore(this);
         scoreText.gameObject.SetActive(isLocalPlayer);
+        Settings.GetInstance().ChangeCursorState();
     }
     private void FixedUpdate()
     {
@@ -62,8 +64,13 @@ public class Player : NetworkBehaviour
     }
     private void InputMouse()
     {
-        mouseY =- Input.GetAxis("Mouse X"); 
-        Rotate(mouseY);
+        float mouseY;
+        float mouseX;
+
+        mouseX =+ Input.GetAxis("Mouse X");
+        mouseY =+ Input.GetAxis("Mouse Y"); 
+
+        Rotate(mouseX,mouseY);
         if (Input.GetMouseButtonDown(0) && coroutine == null)
             coroutine = StartCoroutine(Rush());
     }
@@ -71,13 +78,15 @@ public class Player : NetworkBehaviour
     {
         transform.Translate(direction * Time.fixedDeltaTime * speed);
     }
-    private void Rotate(float angle)
+    private void Rotate(float angleX, float angleY)
     {
-        gameObject.transform.rotation *= Quaternion.Euler(0, angle * rotationSpeed, 0);
+        playerCamera.transform.rotation *= Quaternion.Euler(-angleY * rotationSpeed, 0 , 0);
+        gameObject.transform.rotation *= Quaternion.Euler(0, angleX * rotationSpeed, 0);
     }
     private IEnumerator Rush()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(GetDirection() * pushPower, ForceMode.Impulse);
+        Vector3 direction = gameObject.transform.TransformDirection(GetDirection());
+        gameObject.GetComponent<Rigidbody>().AddForce(direction * pushPower, ForceMode.Impulse);
         Collider collider = collisionChecker.GetComponent<Collider>();
         collider.enabled = true;
         yield return new WaitForSeconds(1);

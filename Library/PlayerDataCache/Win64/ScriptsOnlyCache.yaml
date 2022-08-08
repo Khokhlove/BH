@@ -5,6 +5,9 @@ ScriptsOnlyBuild:
     - Player
     - ScoreControllerNetwork
     - Settings
+    GitHub.Unity.45.dll:
+    - GitHub.Unity.ApplicationCache
+    - GitHub.Unity.EnvironmentCache
     Mirror.Components.dll:
     - Mirror.Experimental.NetworkRigidbody
     - Mirror.NetworkTransform
@@ -28,7 +31,6 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.Text
-    - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
     Assets/Scenes/Game.unity:
     - Class: 1
@@ -64,43 +66,41 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1448}
+      Script: {instanceID: 1482}
     - Class: 114
-      Script: {instanceID: 1450}
+      Script: {instanceID: 1484}
     - Class: 114
-      Script: {instanceID: 1460}
+      Script: {instanceID: 1508}
     - Class: 114
-      Script: {instanceID: 1602}
+      Script: {instanceID: 1650}
     - Class: 114
-      Script: {instanceID: 1910}
+      Script: {instanceID: 1962}
     - Class: 114
-      Script: {instanceID: 2132}
+      Script: {instanceID: 2184}
     - Class: 114
-      Script: {instanceID: 2486}
+      Script: {instanceID: 2630}
     - Class: 114
-      Script: {instanceID: 2490}
+      Script: {instanceID: 2634}
     - Class: 114
-      Script: {instanceID: 2618}
+      Script: {instanceID: 2762}
     - Class: 114
-      Script: {instanceID: 2700}
+      Script: {instanceID: 2846}
     - Class: 114
-      Script: {instanceID: 2862}
+      Script: {instanceID: 3008}
     - Class: 114
-      Script: {instanceID: 3044}
+      Script: {instanceID: 3190}
     - Class: 114
-      Script: {instanceID: 3248}
+      Script: {instanceID: 3394}
     - Class: 114
-      Script: {instanceID: 3350}
+      Script: {instanceID: 3500}
     - Class: 114
-      Script: {instanceID: 3476}
+      Script: {instanceID: 4598}
     - Class: 114
-      Script: {instanceID: 4436}
+      Script: {instanceID: 4772}
     - Class: 114
-      Script: {instanceID: 4608}
+      Script: {instanceID: 4910}
     - Class: 114
-      Script: {instanceID: 4744}
-    - Class: 114
-      Script: {instanceID: 4754}
+      Script: {instanceID: 4920}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1123,4 +1123,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/Game.unity
-  playerPath: C:/Users/Guest1/Desktop/fg/BHTest.exe
+  playerPath: C:/Users/Guest1/Desktop/Build/BHTest.exe

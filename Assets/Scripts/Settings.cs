@@ -17,14 +17,10 @@ public class Settings : Singleton<Settings>
     [SerializeField]
     private float timeRestart = 3;
     public float TimeRestart { get { return timeRestart; } }
-    private void Start()
-    {
-        //ChangeCursorState();
-    }
 
-    private void ChangeCursorState()
+    public void ChangeCursorState()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.None;
     }
 }
