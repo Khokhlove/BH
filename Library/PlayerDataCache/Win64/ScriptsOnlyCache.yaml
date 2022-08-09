@@ -8,6 +8,9 @@ ScriptsOnlyBuild:
     GitHub.Unity.45.dll:
     - GitHub.Unity.ApplicationCache
     - GitHub.Unity.EnvironmentCache
+    - GitHub.Unity.GitLocksCache
+    - GitHub.Unity.GitStatusCache
+    - GitHub.Unity.RepositoryInfoCache
     Mirror.Components.dll:
     - Mirror.Experimental.NetworkRigidbody
     - Mirror.NetworkTransform
