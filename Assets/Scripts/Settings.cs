@@ -18,9 +18,15 @@ public class Settings : Singleton<Settings>
     private float timeRestart = 3;
     public float TimeRestart { get { return timeRestart; } }
 
-    public void ChangeCursorState()
+    public void ChangeCursorState(bool visible, CursorLockMode mode)
     {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = visible;
+            Cursor.lockState = mode;
+    }
+
+    public void CheckPressESC()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+            ChangeCursorState(true, CursorLockMode.None);
     }
 }

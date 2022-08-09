@@ -31,13 +31,13 @@ public class Player : NetworkBehaviour
         {
             playerCamera = Camera.main;
             Transform cameraTransform = playerCamera.gameObject.transform;
-            cameraTransform.parent = cameraPosition.transform;  
-            cameraTransform.position = cameraPosition.transform.position;  
+            cameraTransform.parent = cameraPosition.transform;
+            cameraTransform.position = cameraPosition.transform.position;
             cameraTransform.rotation = cameraPosition.transform.rotation;
         }
         ScoreControllerNetwork.GetInstance().AddPlayerScore(this);
         scoreText.gameObject.SetActive(isLocalPlayer);
-        Settings.GetInstance().ChangeCursorState();
+        Settings.GetInstance().ChangeCursorState(false, CursorLockMode.Locked);
     }
     private void FixedUpdate()
     {
@@ -50,6 +50,7 @@ public class Player : NetworkBehaviour
         if (isLocalPlayer == false)
             return;
         InputMouse();
+        //Settings.GetInstance().CheckPressESC();
     }
     private void InputKey()
     {
@@ -67,10 +68,10 @@ public class Player : NetworkBehaviour
         float mouseY;
         float mouseX;
 
-        mouseX =+ Input.GetAxis("Mouse X");
-        mouseY =+ Input.GetAxis("Mouse Y"); 
+        mouseX = +Input.GetAxis("Mouse X");
+        mouseY = +Input.GetAxis("Mouse Y");
 
-        Rotate(mouseX,mouseY);
+        Rotate(mouseX, mouseY);
         if (Input.GetMouseButtonDown(0) && coroutine == null)
             coroutine = StartCoroutine(Rush());
     }
@@ -80,7 +81,7 @@ public class Player : NetworkBehaviour
     }
     private void Rotate(float angleX, float angleY)
     {
-        playerCamera.transform.rotation *= Quaternion.Euler(-angleY * rotationSpeed, 0 , 0);
+        playerCamera.transform.rotation *= Quaternion.Euler(-angleY * rotationSpeed, 0, 0);
         gameObject.transform.rotation *= Quaternion.Euler(0, angleX * rotationSpeed, 0);
     }
     private IEnumerator Rush()
